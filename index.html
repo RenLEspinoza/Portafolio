@@ -1,0 +1,802 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>&lt;DEV.UX/UI&gt; // Portfolio Matrix</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Space Grotesk & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;1,400&family=Space+Grotesk:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              cyber: {
+                bg: "#07070a",
+                surface: "#0f0f17",
+                border: "#1f1f2e",
+                cyan: "#00f0ff",
+                pink: "#ff0055",
+                purple: "#7000ff",
+                text: "#e2e8f0",
+                dim: "#64748b",
+              },
+            },
+            fontFamily: {
+              sans: ["Space Grotesk", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #07070a;
+        color: #e2e8f0;
+        font-family: "Space Grotesk", sans-serif;
+        overflow-x: hidden;
+      }
+
+      /* Grid Background Pattern */
+      .cyber-grid {
+        background-size: 40px 40px;
+        background-image:
+          linear-gradient(to right, rgba(31, 31, 46, 0.3) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(31, 31, 46, 0.3) 1px, transparent 1px);
+      }
+
+      /* Glow utilities */
+      .glow-cyan {
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+      }
+      .text-glow-cyan {
+        text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+      }
+
+      /* Glassmorphism Cyber Card */
+      .cyber-card {
+        background: rgba(15, 15, 23, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(31, 31, 46, 0.8);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+      }
+      .cyber-card::before {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        width: 8px;
+        height: 8px;
+        border-top: 2px solid #00f0ff;
+        border-left: 2px solid #00f0ff;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .cyber-card::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        right: -1px;
+        width: 8px;
+        height: 8px;
+        border-bottom: 2px solid #ff0055;
+        border-right: 2px solid #ff0055;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .cyber-card:hover {
+        border-color: rgba(0, 240, 255, 0.4);
+        transform: translateY(-3px);
+        box-shadow:
+          0 10px 30px -10px rgba(0, 240, 255, 0.25),
+          0 0 15px rgba(255, 0, 85, 0.15);
+      }
+      .cyber-card:hover::before,
+      .cyber-card:hover::after {
+        opacity: 1;
+      }
+
+      /* Scanline effect */
+      .scanline {
+        width: 100%;
+        height: 100px;
+        z-index: 99;
+        background: linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 240, 255, 0.03) 50%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        opacity: 0.7;
+        position: absolute;
+        bottom: 100%;
+        pointer-events: none;
+        animation: scanline 8s linear infinite;
+      }
+      @keyframes scanline {
+        0% {
+          top: -100px;
+        }
+        100% {
+          top: 100%;
+        }
+      }
+
+      /* Glitch text effect on hover */
+      .glitch-hover:hover {
+        animation: glitch-anim 0.2s ease infinite alternate;
+      }
+      @keyframes glitch-anim {
+        0% {
+          transform: translate(1px, -1px);
+        }
+        100% {
+          transform: translate(-1px, 1px);
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="cyber-grid min-h-screen relative selection:bg-cyber-cyan selection:text-black"
+  >
+    <div class="scanline fixed inset-0"></div>
+
+    <!-- NAVEGACIÓN -->
+    <nav
+      class="fixed top-0 w-full z-50 bg-cyber-bg/80 backdrop-blur-md border-b border-cyber-border/60 px-6 py-4"
+    >
+      <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <a
+          href="#home"
+          class="font-mono font-bold text-lg tracking-wider text-cyber-cyan flex items-center gap-2"
+        >
+          <span
+            class="inline-block w-2 h-2 bg-cyber-cyan rounded-full animate-ping"
+          ></span>
+          SYSTEM_ID: // PORTFOLIO
+        </a>
+
+        <!-- Desktop Links -->
+        <div class="hidden md:flex gap-8 font-mono text-sm tracking-wide">
+          <a
+            href="#home"
+            class="text-cyber-dim hover:text-cyber-cyan transition-colors"
+            >// 01. INICIO</a
+          >
+          <a
+            href="#proyectos"
+            class="text-cyber-dim hover:text-cyber-cyan transition-colors"
+            >// 02. PROYECTOS</a
+          >
+          <a
+            href="#casos"
+            class="text-cyber-dim hover:text-cyber-cyan transition-colors"
+            >// 03. CASOS_ESTUDIO</a
+          >
+          <a
+            href="#about"
+            class="text-cyber-dim hover:text-cyber-cyan transition-colors"
+            >// 04. SOBRE_MÍ</a
+          >
+          <a
+            href="#contacto"
+            class="text-cyber-dim hover:text-cyber-cyan transition-colors"
+            >// 05. CONTACTO</a
+          >
+        </div>
+
+        <a
+          href="#contacto"
+          class="font-mono text-xs px-4 py-2 border border-cyber-cyan/50 text-cyber-cyan hover:bg-cyber-cyan hover:text-black transition-all rounded"
+        >
+          [ ESTADO: DISPONIBLE ]
+        </a>
+      </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section
+      id="home"
+      class="min-h-screen pt-32 pb-16 px-6 flex flex-col justify-center relative"
+    >
+      <div class="max-w-6xl mx-auto w-full">
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1 rounded bg-cyber-surface border border-cyber-border text-cyber-pink font-mono text-xs mb-6"
+        >
+          <i data-lucide="terminal" class="w-4 h-4"></i>
+          <span>DESARROLLADOR FULL STACK & UX/UI DESIGNER</span>
+        </div>
+
+        <h1
+          class="text-4xl md:text-7xl font-bold tracking-tight mb-6 leading-tight"
+        >
+          Arquitectura de Software <br />
+          <span
+            class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan via-purple-500 to-cyber-pink text-glow-cyan"
+          >
+            con Experiencia Visual de Alto Impacto.
+          </span>
+        </h1>
+
+        <p class="text-cyber-dim text-lg md:text-xl max-w-2xl mb-10 font-mono">
+          Conexión entre el diseño intuitivo de interfaces (UX/UI) y el
+          desarrollo técnico escalable en JavaScript, Node.js y PostgreSQL.
+        </p>
+
+        <!-- CARROUSEL / SLIDER DE PROYECTOS (4 SLIDES) -->
+        <div class="relative mt-8">
+          <div
+            class="flex justify-between items-center mb-4 font-mono text-xs text-cyber-dim"
+          >
+            <span>PROYECTOS_DESTACADOS</span>
+            <span id="slide-indicator">01 / 04</span>
+          </div>
+
+          <!-- Slide Container -->
+          <div
+            class="cyber-card rounded-xl p-6 md:p-8 relative overflow-hidden"
+          >
+            <!-- Slide 1 -->
+            <div
+              class="slide-content transition-opacity duration-500 block"
+              id="slide-0"
+            >
+              <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                  <span
+                    class="font-mono text-xs text-cyber-cyan border border-cyber-cyan/30 px-2 py-1 rounded"
+                    >PROYECTO #01</span
+                  >
+                  <h3 class="text-2xl font-bold mt-3 mb-2 text-white">
+                    AlkeWallet - Billetera Digital
+                  </h3>
+                  <p class="text-cyber-dim text-sm mb-4 font-mono">
+                    Sistema backend para billetera digital con Node.js, Express,
+                    Sequelize ORM y PostgreSQL. Autenticación JWT y control
+                    transaccional seguro.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-6">
+                    <span
+                      class="text-xs font-mono bg-cyber-border px-2 py-1 rounded text-cyber-cyan"
+                      >Node.js</span
+                    >
+                    <span
+                      class="text-xs font-mono bg-cyber-border px-2 py-1 rounded text-cyber-cyan"
+                      >Express</span
+                    >
+                    <span
+                      class="text-xs font-mono bg-cyber-border px-2 py-1 rounded text-cyber-cyan"
+                      >PostgreSQL</span
+                    >
+                    <span
+                      class="text-xs font-mono bg-cyber-border px-2 py-1 rounded text-cyber-cyan"
+                      >Sequelize</span
+                    >
+                    <span
+                      class="text-xs font-mono bg-cyber-border px-2 py-1 rounded text-cyber-cyan"
+                      >JWT</span
+                    >
+                  </div>
+                  <div class="flex gap-4">
+                    <a
+                      href="https://github.com/RenLEspinoza/alke-wallet-v1.git"
+                      class="font-mono text-xs px-4 py-2 bg-cyber-cyan text-black font-bold rounded hover:bg-cyan-300 transition-colors flex items-center gap-2"
+                    >
+                      VER CASO DE ESTUDIO
+                      <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                    </a>
+                  </div>
+                </div>
+                <div
+                  class="aspect-video bg-cyber-border/40 rounded-lg overflow-hidden relative border border-cyber-border flex items-center justify-center group"
+                >
+                  <div
+                    class="absolute inset-0 bg-gradient-to-tr from-cyber-purple/20 to-cyber-cyan/20"
+                  ></div>
+                  <i
+                    data-lucide="wallet"
+                    class="w-16 h-16 text-cyber-cyan opacity-80 group-hover:scale-110 transition-transform"
+                  ></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div
+              class="slide-content transition-opacity duration-500 hidden"
+              id="slide-1"
+            >
+              <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                  <span
+                    class="font-mono text-xs text-cyber-pink border border-cyber-pink/30 px-2 py-1 rounded"
+                    >PROYECTO #02</span
+                  >
+                  <h3 class="text-2xl font-bold mt-3 mb-2 text-white">
+                    Alke Wallet (DB & SQL)
+                  </h3>
+                  <p class="text-cyber-dim text-sm mb-4 font-mono">
+                    Diseño de base de datos relacional en MySQL. Normalización
+                    (3FN), integridad referencial y control ACID para
+                    transacciones financieras seguras.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-6">
+                    <span
+                      class="text-xs font-mono bg-cyber-border px-2 py-1 rounded text-cyber-pink"
+                      >JavaScript ES6</span
+                    >
+                    <span
+                      class="text-xs font-mono bg-cyber-border px-2 py-1 rounded text-cyber-pink"
+                      >MySQL</span
+                    >
+                    <span
+                      class="text-xs font-mono bg-cyber-border px-2 py-1 rounded text-cyber-pink"
+                      >ACID</span
+                    >
+                    <span
+                      class="text-xs font-mono bg-cyber-border px-2 py-1 rounded text-cyber-pink"
+                      >3FN</span
+                    >
+                  </div>
+                  <div class="flex gap-4">
+                    <a
+                      href="https://github.com/RenLEspinoza/AlkeWalletBD.git"
+                      class="font-mono text-xs px-4 py-2 bg-cyber-pink text-white font-bold rounded hover:bg-pink-600 transition-colors flex items-center gap-2"
+                    >
+                      VER PROYECTO
+                      <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                    </a>
+                  </div>
+                </div>
+                <div
+                  class="aspect-video bg-cyber-border/40 rounded-lg overflow-hidden relative border border-cyber-border flex items-center justify-center group"
+                >
+                  <div
+                    class="absolute inset-0 bg-gradient-to-tr from-cyber-pink/20 to-cyber-purple/20"
+                  ></div>
+                  <i
+                    data-lucide="shopping-bag"
+                    class="w-16 h-16 text-cyber-pink opacity-80 group-hover:scale-110 transition-transform"
+                  ></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div
+              class="slide-content transition-opacity duration-500 hidden"
+              id="slide-2"
+            >
+              <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                  <span
+                    class="font-mono text-xs text-purple-400 border border-purple-400/30 px-2 py-1 rounded"
+                    >PROYECTO #03</span
+                  >
+                  <h3 class="text-2xl font-bold mt-3 mb-2 text-white">
+                    Plataforma de Aprendizaje Interactiva - Control de Notas
+                  </h3>
+                  <p class="text-cyber-dim text-sm mb-4 font-mono">
+                    Una aplicación interactiva basada en consola web diseñada
+                    para gestionar de manera eficiente el registro de alumnos,
+                    la edición de calificaciones y el diagnóstico automático del
+                    estado académico en establecimientos educativos.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-6">
+                    <span
+                      class="text-xs font-mono bg-cyber-border px-2 py-1 rounded text-purple-300"
+                      >JavaScript ES6+</span
+                    >
+                    <span
+                      class="text-xs font-mono bg-cyber-border px-2 py-1 rounded text-purple-300"
+                      >POO</span
+                    >
+                    <span
+                      class="text-xs font-mono bg-cyber-border px-2 py-1 rounded text-purple-300"
+                      >HTML 5</span
+                    >
+                  </div>
+                  <div class="flex gap-4">
+                    <a
+                      href="https://github.com/RenLEspinoza/M3-06-Proyecto-Modulo-3.git"
+                      class="font-mono text-xs px-4 py-2 bg-purple-600 text-white font-bold rounded hover:bg-purple-700 transition-colors flex items-center gap-2"
+                    >
+                      VER PROYECTO
+                      <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                    </a>
+                  </div>
+                </div>
+                <div
+                  class="aspect-video bg-cyber-border/40 rounded-lg overflow-hidden relative border border-cyber-border flex items-center justify-center group"
+                >
+                  <div
+                    class="absolute inset-0 bg-gradient-to-tr from-purple-500/20 to-cyber-cyan/20"
+                  ></div>
+                  <i
+                    data-lucide="layout"
+                    class="w-16 h-16 text-purple-400 opacity-80 group-hover:scale-110 transition-transform"
+                  ></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 4 (Nuevo Slider Extra - Gestor de Tareas) -->
+            <div
+              class="slide-content transition-opacity duration-500 hidden"
+              id="slide-3"
+            >
+              <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                  <span
+                    class="font-mono text-xs text-emerald-400 border border-emerald-400/30 px-2 py-1 rounded"
+                    >PROYECTO #04</span
+                  >
+                  <h3 class="text-2xl font-bold mt-3 mb-2 text-white">
+                    Re-Build Tecnigen WebSite
+                  </h3>
+                  <p class="text-cyber-dim text-sm mb-4 font-mono">
+                    Rediseño completo de la arquitectura y sitio web de
+                    Tecnigen, desde prototipo en Figma hasta desarrollo web.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-6">
+                    <span
+                      class="text-xs font-mono bg-cyber-border px-2 py-1 rounded text-emerald-300"
+                      >FIGMA</span
+                    >
+                    <span
+                      class="text-xs font-mono bg-cyber-border px-2 py-1 rounded text-emerald-300"
+                      >HTML 5</span
+                    >
+                    <span
+                      class="text-xs font-mono bg-cyber-border px-2 py-1 rounded text-emerald-300"
+                      >CSS</span
+                    >
+                  </div>
+                  <div class="flex gap-4">
+                    <a
+                      href="#https://www.behance.net/gallery/139920015/Tecnigen_WRD"
+                      class="font-mono text-xs px-4 py-2 bg-emerald-600 text-white font-bold rounded hover:bg-emerald-700 transition-colors flex items-center gap-2"
+                    >
+                      VER PROYECTO
+                      <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                    </a>
+                  </div>
+                </div>
+                <div
+                  class="aspect-video bg-cyber-border/40 rounded-lg overflow-hidden relative border border-cyber-border flex items-center justify-center group"
+                >
+                  <div
+                    class="absolute inset-0 bg-gradient-to-tr from-emerald-500/20 to-cyber-cyan/20"
+                  ></div>
+                  <i
+                    data-lucide="check-square"
+                    class="w-16 h-16 text-emerald-400 opacity-80 group-hover:scale-110 transition-transform"
+                  ></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slider Controls -->
+            <div class="flex justify-end gap-2 mt-6">
+              <button
+                onclick="changeSlide(-1)"
+                class="p-2 border border-cyber-border rounded hover:border-cyber-cyan hover:text-cyber-cyan transition-colors"
+              >
+                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+              </button>
+              <button
+                onclick="changeSlide(1)"
+                class="p-2 border border-cyber-border rounded hover:border-cyber-cyan hover:text-cyber-cyan transition-colors"
+              >
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROPUESTA DE VALOR (PILLARS) -->
+    <section class="py-20 px-6 border-t border-cyber-border/40 bg-black/40">
+      <div class="max-w-6xl mx-auto">
+        <div class="mb-12">
+          <span class="font-mono text-xs text-cyber-cyan"
+            >// VALUE_PROPOSITION</span
+          >
+          <h2 class="text-3xl font-bold mt-1">Mi Aporte de Valor Híbrido</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Card 1 -->
+          <div class="cyber-card p-6 rounded-lg">
+            <div
+              class="w-10 h-10 rounded bg-cyber-cyan/10 border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan mb-4"
+            >
+              <i data-lucide="figma" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Visión UX/UI Integrada</h3>
+            <p class="text-cyber-dim font-mono text-sm leading-relaxed">
+              No solo implemento código: diseño experiencias considerando
+              arquitectura de información, jerarquía visual y journeys de
+              usuario claros antes del desarrollo.
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="cyber-card p-6 rounded-lg">
+            <div
+              class="w-10 h-10 rounded bg-cyber-pink/10 border border-cyber-pink/30 flex items-center justify-center text-cyber-pink mb-4"
+            >
+              <i data-lucide="code-2" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Desarrollo Robust Full-Stack</h3>
+            <p class="text-cyber-dim font-mono text-sm leading-relaxed">
+              Construcción de backends seguros y mantenibles con Node.js,
+              Express y PostgreSQL, conectados eficientemente con interfaces
+              dinámicas e interactivas.
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="cyber-card p-6 rounded-lg">
+            <div
+              class="w-10 h-10 rounded bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-4"
+            >
+              <i data-lucide="git-merge" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Sin Brechas de Comunicación</h3>
+            <p class="text-cyber-dim font-mono text-sm leading-relaxed">
+              Traduzco la complejidad técnica a requerimientos de diseño y
+              viceversa, acelerando tiempos de desarrollo y reduciendo rehacer
+              trabajo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STACK TÉCNICO -->
+    <section id="proyectos" class="py-20 px-6 border-t border-cyber-border/40">
+      <div class="max-w-6xl mx-auto">
+        <div class="mb-12 text-center">
+          <span class="font-mono text-xs text-cyber-cyan">// TECH_MATRIX</span>
+          <h2 class="text-3xl font-bold mt-1">Stack Técnico & Herramientas</h2>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 font-mono text-sm">
+          <!-- Node.js -->
+          <div
+            class="p-4 rounded border border-cyber-border bg-cyber-surface flex items-center gap-3 hover:border-cyber-cyan transition-colors"
+          >
+            <i data-lucide="server" class="w-5 h-5 text-cyber-cyan"></i>
+            <span>Node.js / Express</span>
+          </div>
+          <!-- PostgreSQL -->
+          <div
+            class="p-4 rounded border border-cyber-border bg-cyber-surface flex items-center gap-3 hover:border-cyber-cyan transition-colors"
+          >
+            <i data-lucide="database" class="w-5 h-5 text-cyber-cyan"></i>
+            <span>PostgreSQL / SQL</span>
+          </div>
+          <!-- JavaScript -->
+          <div
+            class="p-4 rounded border border-cyber-border bg-cyber-surface flex items-center gap-3 hover:border-cyber-pink transition-colors"
+          >
+            <i data-lucide="file-code" class="w-5 h-5 text-cyber-pink"></i>
+            <span>JavaScript (ES6+)</span>
+          </div>
+          <!-- Figma -->
+          <div
+            class="p-4 rounded border border-cyber-border bg-cyber-surface flex items-center gap-3 hover:border-purple-400 transition-colors"
+          >
+            <i data-lucide="pen-tool" class="w-5 h-5 text-purple-400"></i>
+            <span>Figma / Prototiping</span>
+          </div>
+          <!-- Sequelize -->
+          <div
+            class="p-4 rounded border border-cyber-border bg-cyber-surface flex items-center gap-3 hover:border-cyber-cyan transition-colors"
+          >
+            <i data-lucide="layers" class="w-5 h-5 text-cyber-cyan"></i>
+            <span>Sequelize ORM</span>
+          </div>
+          <!-- HTML5/CSS3 -->
+          <div
+            class="p-4 rounded border border-cyber-border bg-cyber-surface flex items-center gap-3 hover:border-cyber-pink transition-colors"
+          >
+            <i
+              data-lucide="layout-template"
+              class="w-5 h-5 text-cyber-pink"
+            ></i>
+            <span>HTML5 / CSS3 / Tailwind</span>
+          </div>
+          <!-- Git -->
+          <div
+            class="p-4 rounded border border-cyber-border bg-cyber-surface flex items-center gap-3 hover:border-purple-400 transition-colors"
+          >
+            <i data-lucide="git-branch" class="w-5 h-5 text-purple-400"></i>
+            <span>Git / GitHub</span>
+          </div>
+          <!-- REST API -->
+          <div
+            class="p-4 rounded border border-cyber-border bg-cyber-surface flex items-center gap-3 hover:border-cyber-cyan transition-colors"
+          >
+            <i data-lucide="cpu" class="w-5 h-5 text-cyber-cyan"></i>
+            <span>REST APIs / JWT</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HABILIDADES INTERPERSONALES -->
+    <section
+      id="about"
+      class="py-20 px-6 border-t border-cyber-border/40 bg-black/40"
+    >
+      <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <span class="font-mono text-xs text-cyber-pink"
+              >// SOFT_SKILLS</span
+            >
+            <h2 class="text-3xl font-bold mt-1 mb-6">
+              Capacidades Interpersonales
+            </h2>
+
+            <div class="space-y-4 font-mono text-sm">
+              <div
+                class="p-4 rounded border border-cyber-border bg-cyber-surface/60"
+              >
+                <h4 class="font-bold text-white mb-1 flex items-center gap-2">
+                  <i data-lucide="zap" class="w-4 h-4 text-cyber-cyan"></i>
+                  Resolución de Problemas Complejos
+                </h4>
+                <p class="text-cyber-dim text-xs">
+                  Abordaje metódico para desglosar requerimientos y entregar
+                  código óptimo.
+                </p>
+              </div>
+
+              <div
+                class="p-4 rounded border border-cyber-border bg-cyber-surface/60"
+              >
+                <h4 class="font-bold text-white mb-1 flex items-center gap-2">
+                  <i data-lucide="users" class="w-4 h-4 text-cyber-pink"></i>
+                  Trabajo Colaborativo
+                </h4>
+                <p class="text-cyber-dim text-xs">
+                  Facilidad para integrarme en equipos ágiles con constante
+                  feedback iterativo.
+                </p>
+              </div>
+
+              <div
+                class="p-4 rounded border border-cyber-border bg-cyber-surface/60"
+              >
+                <h4 class="font-bold text-white mb-1 flex items-center gap-2">
+                  <i data-lucide="eye" class="w-4 h-4 text-purple-400"></i>
+                  Rigor y Atención al Detalle
+                </h4>
+                <p class="text-cyber-dim text-xs">
+                  Cuidado de los píxeles en el diseño y pulcritud en la
+                  estructura del código.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="cyber-card p-6 rounded-xl font-mono text-xs text-cyber-dim"
+          >
+            <div
+              class="flex items-center gap-2 border-b border-cyber-border pb-3 mb-4"
+            >
+              <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+              <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+              <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+              <span class="ml-2 text-cyber-cyan">profile_summary.json</span>
+            </div>
+            <pre class="text-cyber-text leading-relaxed">
+{
+  <span class="text-cyber-cyan">"profile"</span>: <span class="text-cyber-pink">"Full Stack Developer"</span>,
+  <span class="text-cyber-cyan">"focus"</span>: [<span class="text-green-400">"UI/UX Architecture"</span>, <span class="text-green-400">"Node.js Backend"</span>],
+  <span class="text-cyber-cyan">"methodology"</span>: <span class="text-purple-400">"Agile / Component-Driven"</span>,
+  <span class="text-cyber-cyan">"availability"</span>: <span class="text-cyber-cyan">true</span>,
+  <span class="text-cyber-cyan">"location"</span>: <span class="text-cyber-pink">"Remote / Chile"</span>,
+  <span class="text-cyber-cyan">"status"</span>: <span class="text-green-400">"Ready for deployment"</span>
+}
+                    </pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO & FOOTER -->
+    <footer
+      id="contacto"
+      class="py-16 px-6 border-t border-cyber-border bg-cyber-bg text-center"
+    >
+      <div class="max-w-4xl mx-auto">
+        <span class="font-mono text-xs text-cyber-cyan"
+          >// INICIAR_CONEXIÓN</span
+        >
+        <h2 class="text-3xl font-bold mt-2 mb-4">¿Trabajamos Juntos?</h2>
+        <p class="text-cyber-dim font-mono text-sm max-w-lg mx-auto mb-8">
+          Disponible para proyectos Full Stack, maquetación UI/UX o integración
+          a equipos de desarrollo.
+        </p>
+
+        <div
+          class="flex flex-wrap justify-center gap-4 font-mono text-sm mb-12"
+        >
+          <a
+            href="https://github.com/RenLEspinoza"
+            target="_blank"
+            class="cyber-card px-6 py-3 rounded text-cyber-cyan border-cyber-cyan/40 hover:bg-cyber-cyan hover:text-black flex items-center gap-2"
+          >
+            <i data-lucide="github" class="w-4 h-4"></i> GITHUB
+          </a>
+          <a
+            href="https://linkedin.com/in/renato-l-espinoza/"
+            target="_blank"
+            class="cyber-card px-6 py-3 rounded text-cyber-cyan border-cyber-cyan/40 hover:bg-cyber-cyan hover:text-black flex items-center gap-2"
+          >
+            <i data-lucide="linkedin" class="w-4 h-4"></i> LINKEDIN
+          </a>
+          <a
+            href="ren.lopez.espinoza@gmail.com"
+            class="cyber-card px-6 py-3 rounded text-cyber-cyan border-cyber-cyan/40 hover:bg-cyber-cyan hover:text-black flex items-center gap-2"
+          >
+            <i data-lucide="mail" class="w-4 h-4"></i>
+            ren.lopez.espinoza@gmail.com
+          </a>
+        </div>
+
+        <p class="font-mono text-xs text-cyber-dim">
+          &copy; 2026. Diseñado y Desarrollado bajo estética Cyberpunk
+          Minimalista.
+        </p>
+      </div>
+    </footer>
+
+    <!-- JS Logic Slider (4 Slides) & Icons -->
+    <script>
+      // Lucide Icons Render
+      lucide.createIcons();
+
+      // Slider State Logic
+      let currentSlide = 0;
+      const totalSlides = 4;
+
+      function changeSlide(direction) {
+        document
+          .getElementById(`slide-${currentSlide}`)
+          .classList.add("hidden");
+        document
+          .getElementById(`slide-${currentSlide}`)
+          .classList.remove("block");
+
+        currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+
+        document
+          .getElementById(`slide-${currentSlide}`)
+          .classList.remove("hidden");
+        document.getElementById(`slide-${currentSlide}`).classList.add("block");
+
+        document.getElementById("slide-indicator").innerText =
+          `0${currentSlide + 1} / 0${totalSlides}`;
+      }
+    </script>
+  </body>
+</html>

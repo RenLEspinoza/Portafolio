@@ -291,7 +291,7 @@
                   </div>
                   <div class="flex gap-4">
                     <a
-                      href="https://github.com/RenLEspinoza/alke-wallet-v1.git"
+                      href="#casos"
                       class="font-mono text-xs px-4 py-2 bg-cyber-cyan text-black font-bold rounded hover:bg-cyan-300 transition-colors flex items-center gap-2"
                     >
                       VER CASO DE ESTUDIO
@@ -432,7 +432,7 @@
               </div>
             </div>
 
-            <!-- Slide 4 (Nuevo Slider Extra - Gestor de Tareas) -->
+            <!-- Slide 4 -->
             <div
               class="slide-content transition-opacity duration-500 hidden"
               id="slide-3"
@@ -466,7 +466,8 @@
                   </div>
                   <div class="flex gap-4">
                     <a
-                      href="#https://www.behance.net/gallery/139920015/Tecnigen_WRD"
+                      href="https://www.behance.net/gallery/139920015/Tecnigen_WRD"
+                      target="_blank"
                       class="font-mono text-xs px-4 py-2 bg-emerald-600 text-white font-bold rounded hover:bg-emerald-700 transition-colors flex items-center gap-2"
                     >
                       VER PROYECTO
@@ -488,20 +489,235 @@
               </div>
             </div>
 
-            <!-- Slider Controls -->
+            <!-- Controles del Slider -->
             <div class="flex justify-end gap-2 mt-6">
               <button
                 onclick="changeSlide(-1)"
-                class="p-2 border border-cyber-border rounded hover:border-cyber-cyan hover:text-cyber-cyan transition-colors"
+                class="p-2 cyber-card rounded text-cyber-dim hover:text-cyber-cyan transition-colors"
               >
                 <i data-lucide="chevron-left" class="w-4 h-4"></i>
               </button>
               <button
                 onclick="changeSlide(1)"
-                class="p-2 border border-cyber-border rounded hover:border-cyber-cyan hover:text-cyber-cyan transition-colors"
+                class="p-2 cyber-card rounded text-cyber-dim hover:text-cyber-cyan transition-colors"
               >
                 <i data-lucide="chevron-right" class="w-4 h-4"></i>
               </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- NUEVA SECCIÓN: CASO DE ESTUDIO (ALKE WALLET) -->
+    <!-- ========================================== -->
+    <section
+      id="casos"
+      class="py-20 px-6 border-t border-cyber-border/40 bg-black/40"
+    >
+      <div class="max-w-6xl mx-auto">
+        <!-- Encabezado de la Sección -->
+        <div class="mb-12 flex justify-between items-end">
+          <div>
+            <span class="font-mono text-xs text-cyber-cyan"
+              >// 03. CASOS_ESTUDIO</span
+            >
+            <h2 class="text-3xl font-bold mt-1">
+              Análisis Técnico en Profundidad
+            </h2>
+          </div>
+          <span class="hidden md:inline-block font-mono text-xs text-cyber-dim"
+            >[ PROYECTO SELECCIONADO: ALKE_WALLET_V1 ]</span
+          >
+        </div>
+
+        <!-- Tarjeta Principal del Caso de Estudio -->
+        <div class="cyber-card rounded-xl p-6 md:p-10">
+          <!-- Cabecera interna -->
+          <div
+            class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-cyber-border pb-6 mb-8"
+          >
+            <div>
+              <div
+                class="inline-block font-mono text-xs text-cyber-cyan border border-cyber-cyan/30 bg-cyber-cyan/10 px-3 py-1 rounded mb-3"
+              >
+                CASO DE ESTUDIO // BACKEND & ARCHITECTURE
+              </div>
+              <h3 class="text-2xl md:text-3xl font-bold text-white">
+                Alke Wallet – Billetera Digital Backend
+              </h3>
+            </div>
+            <a
+              href="https://github.com/RenLEspinoza/alke-wallet-v1.git"
+              target="_blank"
+              class="font-mono text-xs px-4 py-2 border border-cyber-cyan/50 text-cyber-cyan hover:bg-cyber-cyan hover:text-black transition-all rounded flex items-center gap-2"
+            >
+              <i data-lucide="github" class="w-4 h-4"></i> VER REPOSITORIO
+            </a>
+          </div>
+
+          <!-- Stack badges de tecnologías aplicadas -->
+          <div class="mb-8">
+            <span class="font-mono text-xs text-cyber-dim block mb-3"
+              >// HERRAMIENTAS TÉCNICAS UTILIZADAS:</span
+            >
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="text-xs font-mono bg-cyber-surface border border-cyber-border px-3 py-1.5 rounded text-cyber-cyan"
+                >Node.js</span
+              >
+              <span
+                class="text-xs font-mono bg-cyber-surface border border-cyber-border px-3 py-1.5 rounded text-cyber-cyan"
+                >Express</span
+              >
+              <span
+                class="text-xs font-mono bg-cyber-surface border border-cyber-border px-3 py-1.5 rounded text-cyber-cyan"
+                >PostgreSQL</span
+              >
+              <span
+                class="text-xs font-mono bg-cyber-surface border border-cyber-border px-3 py-1.5 rounded text-cyber-cyan"
+                >Sequelize ORM</span
+              >
+              <span
+                class="text-xs font-mono bg-cyber-surface border border-cyber-border px-3 py-1.5 rounded text-cyber-pink"
+                >JWT (JSON Web Tokens)</span
+              >
+              <span
+                class="text-xs font-mono bg-cyber-surface border border-cyber-border px-3 py-1.5 rounded text-cyber-pink"
+                >Bcrypt.js</span
+              >
+              <span
+                class="text-xs font-mono bg-cyber-surface border border-cyber-border px-3 py-1.5 rounded text-purple-400"
+                >Multer</span
+              >
+              <span
+                class="text-xs font-mono bg-cyber-surface border border-cyber-border px-3 py-1.5 rounded text-purple-400"
+                >Handlebars</span
+              >
+            </div>
+          </div>
+
+          <!-- Grilla de Requerimientos del Caso de Estudio -->
+          <div class="grid md:grid-cols-2 gap-6 mb-8 font-mono">
+            <!-- Tarea & Desafío -->
+            <div
+              class="p-5 rounded-lg border border-cyber-border bg-cyber-surface/60"
+            >
+              <h4
+                class="text-xs text-cyber-cyan font-bold mb-2 flex items-center gap-2"
+              >
+                <i data-lucide="target" class="w-4 h-4"></i> TAREA & DESAFÍO
+                PRINCIPAL
+              </h4>
+              <p class="text-cyber-dim text-xs leading-relaxed mb-3">
+                <strong class="text-cyber-text">Descripción:</strong> Desarrollo
+                integral del sistema backend y API RESTful de una billetera
+                digital interactiva, gestionando usuarios, cuentas y
+                transacciones[cite: 1].
+              </p>
+              <p class="text-cyber-dim text-xs leading-relaxed">
+                <strong class="text-cyber-text">Desafío:</strong> Garantizar la
+                seguridad estricta, integridad y atomicidad en las operaciones
+                monetarias críticas y el manejo de credenciales[cite: 1].
+              </p>
+            </div>
+
+            <!-- Solución Propuesta -->
+            <div
+              class="p-5 rounded-lg border border-cyber-border bg-cyber-surface/60"
+            >
+              <h4
+                class="text-xs text-cyber-pink font-bold mb-2 flex items-center gap-2"
+              >
+                <i data-lucide="cpu" class="w-4 h-4"></i> SOLUCIÓN PROPUESTA
+              </h4>
+              <p class="text-cyber-dim text-xs leading-relaxed">
+                Implementación de arquitectura modular MVC desacoplada. Se
+                incorporó autenticación
+                <em class="text-cyber-text">stateless</em> mediante JSON Web
+                Tokens (JWT), encriptación segura con Bcrypt, control de cargas
+                con Multer y un modelado relacional estructurado mediante
+                Sequelize ORM[cite: 1].
+              </p>
+            </div>
+
+            <!-- Aprendizajes & Habilidades -->
+            <div
+              class="p-5 rounded-lg border border-cyber-border bg-cyber-surface/60"
+            >
+              <h4
+                class="text-xs text-purple-400 font-bold mb-2 flex items-center gap-2"
+              >
+                <i data-lucide="book-open" class="w-4 h-4"></i> APRENDIZAJES &
+                HABILIDADES APLICADAS
+              </h4>
+              <p class="text-cyber-dim text-xs leading-relaxed mb-3">
+                <strong class="text-cyber-text">Habilidades:</strong> Backend
+                con Node.js, modelado SQL/ORM, seguridad Web (JWT/Hashing) y
+                diseño de APIs RESTful[cite: 1].
+              </p>
+              <p class="text-cyber-dim text-xs leading-relaxed">
+                <strong class="text-cyber-text">Aprendizajes:</strong> Creación
+                de middlewares de autorización personalizados y gestión avanzada
+                de relaciones de base de datos (1:1 y 1:N)[cite: 1].
+              </p>
+            </div>
+
+            <!-- Métricas de Impacto -->
+            <div
+              class="p-5 rounded-lg border border-cyber-cyan/30 bg-cyber-cyan/5"
+            >
+              <h4
+                class="text-xs text-cyber-cyan font-bold mb-2 flex items-center gap-2"
+              >
+                <i data-lucide="trending-up" class="w-4 h-4"></i> MÉTRICAS DE
+                IMPACTO LOGRADAS
+              </h4>
+              <ul class="text-cyber-dim text-xs space-y-2">
+                <li class="flex items-start gap-2">
+                  <span class="text-cyber-cyan font-bold">✔</span>
+                  <span
+                    ><strong class="text-cyber-text">100%</strong> de rutas
+                    financieras protegidas mediante validación estricta de
+                    tokens JWT[cite: 1].</span
+                  >
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-cyber-cyan font-bold">✔</span>
+                  <span
+                    >Integridad de datos garantizada a nivel de ORM, eliminando
+                    por completo registros huérfanos[cite: 1].</span
+                  >
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-cyber-cyan font-bold">✔</span>
+                  <span
+                    >Modularidad total, aislando limpiamente la lógica de
+                    negocio de la interfaz de usuario Handlebars[cite: 1].</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Justificación Final de Elección -->
+          <div
+            class="p-5 rounded-lg border border-cyber-border bg-cyber-surface/80 font-mono text-xs text-cyber-dim flex flex-col md:flex-row items-start md:items-center gap-4"
+          >
+            <div
+              class="p-3 rounded bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/30"
+            >
+              <i data-lucide="award" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <strong class="text-cyber-text block mb-1"
+                >// ¿POR QUÉ ELEGÍ ESTE PROYECTO PARA MI PORTAFOLIO?</strong
+              >
+              Refleja competencias clave del backend moderno: resolución de
+              lógica de negocio compleja, implementación de seguridad robusta y
+              estructuración de bases de datos relacionales orientadas a
+              aplicaciones financieras del mundo real[cite: 1].
             </div>
           </div>
         </div>
@@ -755,7 +971,7 @@
             <i data-lucide="linkedin" class="w-4 h-4"></i> LINKEDIN
           </a>
           <a
-            href="ren.lopez.espinoza@gmail.com"
+            href="mailto:ren.lopez.espinoza@gmail.com"
             class="cyber-card px-6 py-3 rounded text-cyber-cyan border-cyber-cyan/40 hover:bg-cyber-cyan hover:text-black flex items-center gap-2"
           >
             <i data-lucide="mail" class="w-4 h-4"></i>
